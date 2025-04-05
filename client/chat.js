@@ -62,3 +62,32 @@ socket.on('chat history', function (history) {
   });
   messages.scrollTop = messages.scrollHeight;
 });
+
+const fileInput = document.getElementById('fileInput');
+
+fileInput.addEventListener('change', async () => {
+  const file = fileInput.files[0];
+  if (!file) return;
+
+  const formData = new FormData();
+  formData.append('file', file);
+
+  try {
+    const res = await fetch('/upload-file', {
+      method: 'POST',
+      body: formData
+    });
+    const data = await res.json();
+
+    if (!data.url) {
+      alert('上传失败');
+      return;
+    }
+
+    // 向聊天室广播文件信息（以下载链接形式）
+    socket.emit('chat message', `📎 <a href="${data.url}" download="${data.name}" target="_blank">${data.name}</a>`);
+  } catch (err) {
+    alert('上传失败');
+    console.error(err);
+  }
+});
