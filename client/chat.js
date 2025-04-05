@@ -22,15 +22,34 @@ form.addEventListener('submit', function (e) {
   }
 });
 
-socket.on('chat message', function (msg) {
+function formatTime() {
+  const now = new Date();
+  return now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+}
+
+function createMessageItem(msg) {
   const item = document.createElement('li');
-  const avatar = msg.avatar || 'images/default-avatar.png';
+  item.classList.add('message-item');
+
+  const avatar = msg.avatar || '/avatars/default.png';
   const user = msg.user || '匿名';
+  const time = formatTime();
 
   item.innerHTML = `
-    <img src="${avatar}" alt="avatar">
-    <div><strong>${user}：</strong> ${msg.text}</div>
+    <img src="${avatar}" class="message-avatar" />
+    <div class="message-content">
+      <div class="message-header">
+        <span class="message-user">${user}</span>
+        <span class="message-time">${time}</span>
+      </div>
+      <div class="message-text">${msg.text}</div>
+    </div>
   `;
+  return item;
+}
+
+socket.on('chat message', function (msg) {
+  const item = createMessageItem(msg);
   messages.appendChild(item);
   messages.scrollTop = messages.scrollHeight;
 });
@@ -38,14 +57,7 @@ socket.on('chat message', function (msg) {
 socket.on('chat history', function (history) {
   messages.innerHTML = '';
   history.forEach(msg => {
-    const item = document.createElement('li');
-    const avatar = msg.avatar || 'images/default-avatar.png';
-    const user = msg.user || '匿名';
-
-    item.innerHTML = `
-      <img src="${avatar}" alt="avatar">
-      <div><strong>${user}：</strong> ${msg.text}</div>
-    `;
+    const item = createMessageItem(msg);
     messages.appendChild(item);
   });
   messages.scrollTop = messages.scrollHeight;
