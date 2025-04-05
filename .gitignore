@@ -1,4 +1,5 @@
 node_modules/
+public/
 userData.json
 .DS_Store
 .env

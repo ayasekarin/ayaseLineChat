@@ -23,15 +23,38 @@ avatarInput.addEventListener('change', () => {
     const reader = new FileReader();
     reader.onload = () => {
         avatarPreview.src = reader.result;
-        localStorage.setItem('avatar', reader.result);
     };
     reader.readAsDataURL(file);
 });
 
-function enterChat() {
+async function enterChat() {
     const name = document.getElementById('username').value.trim();
-    if (!name) return alert('ユーザー名を入力してください');
+    if (!name) return alert('请输入用户名');
 
-    localStorage.setItem('username', name);
-    window.location.href = 'chat.html';
+    const file = avatarInput.files[0];
+
+    if (file) {
+        const formData = new FormData();
+        formData.append('avatar', file);
+
+        try {
+            const res = await fetch('/upload-avatar', {
+                method: 'POST',
+                body: formData
+            });
+            const data = await res.json();
+            if (!data.url) throw new Error('上传失败');
+
+            localStorage.setItem('username', name);
+            localStorage.setItem('avatar', data.url);
+            window.location.href = 'chat.html';
+        } catch (err) {
+            alert('头像上传失败，请重试');
+            console.error(err);
+        }
+    } else {
+        localStorage.setItem('username', name);
+        localStorage.setItem('avatar', 'images/default-avatar.png');
+        window.location.href = 'chat.html';
+    }
 }

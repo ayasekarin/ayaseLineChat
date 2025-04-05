@@ -1,7 +1,7 @@
 const socket = io();
 
 const username = localStorage.getItem('username');
-const avatar = localStorage.getItem('avatar');
+const avatar = localStorage.getItem('avatar') || 'images/default-avatar.png';
 
 if (!username) {
   alert('请先登录');
