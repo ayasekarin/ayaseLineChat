@@ -31,7 +31,7 @@ function createMessageItem(msg) {
   const item = document.createElement('li');
   item.classList.add('message-item');
 
-  const avatar = msg.avatar || '/avatars/default.png';
+  const avatar = msg.avatar || 'images/default-avatar.png';
   const user = msg.user || '匿名';
   const time = formatTime();
 
