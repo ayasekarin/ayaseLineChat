@@ -71,7 +71,7 @@ io.on('connection', (socket) => {
     }
 
     socket.username = username;
-    socket.avatar = userData[username] || '/avatars/default.png';
+    socket.avatar = userData[username] || 'images/default-avatar.png';
 
     socket.emit('chat history', messages);
 
