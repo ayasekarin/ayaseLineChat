@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Ayaseチャットルーム</title>
+        <link rel="stylesheet" href="style.css" />
+    </head>
+
+    <body>
+        <div class="centered">
+            <h2>Welcome to Ayase Chat room</h2>
+
+            <div id="avatarPreviewContainer">
+                <img id="avatarPreview" src="images/default-avatar.png" alt="预览头像">
+            </div>
+
+            <div class="login-row">
+                <label class="upload-btn">
+                    select
+                    <input type="file" id="avatar" accept="image/png, image/jpeg" hidden />
+                </label>
+            </div>
+            <br>
+
+            <div class="login-row">
+                <input id="username" placeholder="ニックネームを入力ください" />
+                <button onclick="enterChat()">Entry</button>
+            </div>
+
+
+
+
+        </div>
+
+        <script src="login.js"></script>
+    </body>
+
+</html>
