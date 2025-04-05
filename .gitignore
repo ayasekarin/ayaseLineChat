@@ -1,2 +1,4 @@
 node_modules/
-/userData.json
+userData.json
+.DS_Store
+.env

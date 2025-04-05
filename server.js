@@ -17,7 +17,9 @@ if (fs.existsSync(userDataFile)) {
 }
 
 // 提供静态文件服务
-app.use(express.static(path.join(__dirname, 'client')));
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'client', 'login.html'));
+});
 
 io.on('connection', (socket) => {
   socket.on('login', (data) => {
