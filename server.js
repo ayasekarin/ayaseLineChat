@@ -137,8 +137,8 @@ app.post('/upload-file', uploadFile.single('file'), (req, res) => {
 const { Pool } = require('pg');
 
 const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-  // connectionString: 'postgresql://ayasechatdb_user:4PKLCyMIH9rJD5zzODtMssX6AcxmzUzG@dpg-cvqhs4je5dus73faqkrg-a.singapore-postgres.render.com/ayasechatdb',
+  // connectionString: process.env.DATABASE_URL,
+  connectionString: 'postgresql://ayasechatdb_user:4PKLCyMIH9rJD5zzODtMssX6AcxmzUzG@dpg-cvqhs4je5dus73faqkrg-a.singapore-postgres.render.com/ayasechatdb',
   ssl: { rejectUnauthorized: false }
 });
 
