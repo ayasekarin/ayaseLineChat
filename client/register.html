@@ -4,46 +4,47 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Ayaseチャットルーム</title>
+        <title>登録 - Ayaseチャットルーム</title>
         <link rel="stylesheet" href="style.css" />
     </head>
 
     <body>
         <div class="centered">
-            <h2>Ayase Chat room</h2>
+            <h2>Ayase Account</h2>
 
             <div id="avatarPreviewContainer">
-                <img id="avatarPreview" src="images/default-avatar.png" alt="预览头像">
+                <img id="avatarPreview" src="images/default-avatar.png" alt="预览头像" />
             </div>
 
-            <!-- <div class="login-row">
+            <div class="login-row">
                 <label class="upload-btn">
-                    select
+                    Select
                     <input type="file" id="avatar" accept="image/png, image/jpeg" hidden />
                 </label>
-            </div> -->
+            </div>
+            <br>
             <br>
 
             <div class="login-row">
-                <input id="username" placeholder="ニックネーム" />
+                <input id="username" placeholder="ユーザーID(2~16桁)" />
             </div>
 
             <div class="login-row">
-                <input id="password" type="password" placeholder="パスワード" />
+                <input id="password" type="password" placeholder="パスワード(6~8桁)" />
             </div>
             <br>
 
             <div class="login-row">
-                <button class="entry-btn" onclick="enterChat()">Entry</button>
+                <button id="registerBtn">登録</button>
             </div>
             <br>
 
             <p style="margin-top: 10px;">
-                アカウント作成しませんか？<a href="register.html">新規登録</a>
+                既にアカウントをお持ちの方⇒<a href="login.html">返回登录</a>
             </p>
         </div>
 
-        <script src="login.js"></script>
+        <script src="register.js"></script>
     </body>
 
 </html>

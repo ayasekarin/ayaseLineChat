@@ -84,7 +84,6 @@ fileInput.addEventListener('change', async () => {
       return;
     }
 
-    // 向聊天室广播文件信息（以下载链接形式）
     socket.emit('chat message', `📎 <a href="${data.url}" download="${data.name}" target="_blank">${data.name}</a>`);
   } catch (err) {
     alert('上传失败');
